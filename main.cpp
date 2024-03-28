@@ -18,13 +18,7 @@
 // ----------------------------------------------------------------------------
 // Debug macros
 // ----------------------------------------------------------------------------
-#ifdef _DEBUG
-#include <dxerr.h>
-#pragma comment(lib, "dxerr.lib")
-#define CHECK_HRESULT(result) { if (FAILED(result)) { DXTraceW(__FILE__,__LINE__, result, L"Error", true); __asm _emit 0xF1 }  }
-#else
-#define CHECK_HRESULT(result)
-#endif
+#define CHECK_HRESULT(result) { if (FAILED(result)) { __debugbreak();  } }
 
 // ----------------------------------------------------------------------------
 // main
@@ -232,4 +226,3 @@ int main(int argc, char* argv[])
 
     return 0;
 }
-

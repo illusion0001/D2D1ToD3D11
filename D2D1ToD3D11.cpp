@@ -10,14 +10,7 @@
 // ----------------------------------------------------------------------------
 // Debug macros
 // ----------------------------------------------------------------------------
-#ifdef _DEBUG
-#include <dxerr.h>
-#pragma comment(lib, "dxerr.lib")
-// Bug with DXTraceA, using DXTraceW instead
-#define CHECK_HRESULT(result) { if (FAILED(result)) { DXTraceW(__FILE__,__LINE__, result, L"Error", true); __asm _emit 0xF1 }  }
-#else
-#define CHECK_HRESULT(result)
-#endif
+#define CHECK_HRESULT(result) { if (FAILED(result)) { __debugbreak();  } }
 
 #define CHECK_RETURN(result) CHECK_HRESULT(result); return result;
 
@@ -978,7 +971,7 @@ public:
 		__in_xcount_opt(pDesc->MipLevels * pDesc->ArraySize)  const D3D10_SUBRESOURCE_DATA *pInitialData,
 		/* [annotation] */ 
 		__out  ID3D10Texture1D **ppTexture1D) {
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1005,7 +998,7 @@ public:
 		__in_xcount_opt(pDesc->MipLevels)  const D3D10_SUBRESOURCE_DATA *pInitialData,
 		/* [annotation] */ 
 		__out  ID3D10Texture3D **ppTexture3D) { 
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1040,7 +1033,7 @@ public:
 		__in_opt  const D3D10_DEPTH_STENCIL_VIEW_DESC *pDesc,
 		/* [annotation] */ 
 		__out_opt  ID3D10DepthStencilView **ppDepthStencilView) {  
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1078,7 +1071,7 @@ public:
 		__in  SIZE_T BytecodeLength,
 		/* [annotation] */ 
 		__out_opt  ID3D10GeometryShader **ppGeometryShader) {  
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1095,7 +1088,7 @@ public:
 		__in  UINT OutputStreamStride,
 		/* [annotation] */ 
 		__out_opt  ID3D10GeometryShader **ppGeometryShader) {  
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1137,7 +1130,7 @@ public:
 		__in  const D3D10_DEPTH_STENCIL_DESC *pDepthStencilDesc,
 		/* [annotation] */ 
 		__out_opt  ID3D10DepthStencilState **ppDepthStencilState) {  
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1165,7 +1158,7 @@ public:
 		__in  const D3D10_QUERY_DESC *pQueryDesc,
 		/* [annotation] */ 
 		__out_opt  ID3D10Query **ppQuery) {  
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1174,7 +1167,7 @@ public:
 		__in  const D3D10_QUERY_DESC *pPredicateDesc,
 		/* [annotation] */ 
 		__out_opt  ID3D10Predicate **ppPredicate) {  
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1183,7 +1176,7 @@ public:
 		__in  const D3D10_COUNTER_DESC *pCounterDesc,
 		/* [annotation] */ 
 		__out_opt  ID3D10Counter **ppCounter) { 
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1232,7 +1225,7 @@ public:
 		__out_ecount_opt(*pDescriptionLength)  LPSTR szDescription,
 		/* [annotation] */ 
 		__inout_opt  UINT *pDescriptionLength) {  
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1247,7 +1240,7 @@ public:
 		__in  REFIID ReturnedInterface,
 		/* [annotation] */ 
 		__out_opt  void **ppResource) { 
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1256,7 +1249,7 @@ public:
 		__in  UINT Width,
 		/* [annotation] */ 
 		__in  UINT Height) {
-			__asm _emit 0xF1
+			__debugbreak();
 	}
 
 	virtual void STDMETHODCALLTYPE GetTextFilterSize( 
@@ -1264,7 +1257,7 @@ public:
 		__out_opt  UINT *pWidth,
 		/* [annotation] */ 
 		__out_opt  UINT *pHeight) {
-			__asm _emit 0xF1
+			__debugbreak();
 	}        
 
 	virtual HRESULT STDMETHODCALLTYPE CreateShaderResourceView1( 
@@ -1274,7 +1267,7 @@ public:
 		__in_opt  const D3D10_SHADER_RESOURCE_VIEW_DESC1 *pDesc,
 		/* [annotation] */ 
 		__out_opt  ID3D10ShaderResourceView1 **ppSRView) {
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1283,7 +1276,7 @@ public:
 		__in  const D3D10_BLEND_DESC1 *pBlendStateDesc,
 		/* [annotation] */ 
 		__out_opt  ID3D10BlendState1 **ppBlendState) {
-			__asm _emit 0xF1
+			__debugbreak();
 			return S_FALSE; 
 	}
 
@@ -1319,7 +1312,7 @@ void STDMETHODCALLTYPE ProxyID3D10Buffer::Unmap( void) {
 void STDMETHODCALLTYPE ProxyID3D10Buffer::GetDesc( 
 	/* [annotation] */ 
 	__out  D3D10_BUFFER_DESC *pDesc) {
-		__asm _emit 0xF1
+		__debugbreak();
 }
 
 // --------------------------------------------------------------------------------
@@ -1615,3 +1608,4 @@ HRESULT Code4kSaveTextureToFile(ID3D11DeviceContext *pContext, ID3D11Texture2D* 
 	}
 	return result;
 }
+
