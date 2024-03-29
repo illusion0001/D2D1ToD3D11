@@ -4,8 +4,13 @@
 // The software is provided "as is", without warranty of any kind.
 // ----------------------------------------------------------------------------
 
+#pragma GCC diagnostic ignored "-Wnonportable-include-path"
+#pragma GCC diagnostic ignored "-Wdelete-non-abstract-non-virtual-dtor"
+
 #include "D2D1ToD3D11.h"
 #include <d3d10_1.h>
+
+#pragma GCC diagnostic warning "-Wnonportable-include-path"
 
 // ----------------------------------------------------------------------------
 // Debug macros
@@ -1609,3 +1614,4 @@ HRESULT Code4kSaveTextureToFile(ID3D11DeviceContext *pContext, ID3D11Texture2D* 
 	return result;
 }
 
+#pragma GCC diagnostic warning "-Wdelete-non-abstract-non-virtual-dtor"
